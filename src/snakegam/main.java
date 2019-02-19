@@ -1,7 +1,9 @@
 package snakegam;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -10,10 +12,11 @@ import javafx.stage.Stage;
  * @author CarlosDiaz,Alejando Dianez 
  */
 public class main extends Application {
-    
-    static int bloque_tamaño = 10;
+    //Variables
+    public static int bloque_tamaño = 10;
     int ancho = 30, alto =15;
     int il = 5;
+    long then= System.nanoTime();
     
     @Override
     public void start(Stage primaryStage) {
@@ -22,10 +25,39 @@ public class main extends Application {
         //root.setPadding(new Insets(10));
         CampoJuego f = new CampoJuego(ancho,alto);
         f.addSnake(new Serpiente(il,f));
+        
+        AnimationTimer mov = new AnimationTimer(){
+            @Override
+            public void handle(long now) {
+                if(now - then>1000000000 / 8){
+                f.actualizar();
+                then = now;
+            }
+                
+                
+            }
+            
+        };
+        mov.start();
         root.getChildren().add(f);
       
        
-        Scene scene = new Scene(root, 950, 1010);
+        Scene scene = new Scene(root);
+        
+        scene.setOnKeyPressed(e-> {
+        if(e.getCode().equals(KeyCode.UP) && f.snake.getDireccion() != bloque.DOWN){
+            f.snake.setDireccion(bloque.UP);
+        }
+        if(e.getCode().equals(KeyCode.DOWN)&& f.snake.getDireccion() != bloque.UP){
+            f.snake.setDireccion(bloque.DOWN);
+        }
+        if(e.getCode().equals(KeyCode.RIGHT)&& f.snake.getDireccion() != bloque.LEFT){
+            f.snake.setDireccion(bloque.RIGHT);
+        }
+        if(e.getCode().equals(KeyCode.LEFT)&& f.snake.getDireccion() != bloque.RIGHT){
+            f.snake.setDireccion(bloque.LEFT);
+        }
+        });
         primaryStage.setTitle("SNAKEGAME");
         primaryStage.setScene(scene);
         primaryStage.show();

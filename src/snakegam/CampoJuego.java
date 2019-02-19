@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import snakegam.main;
 
 
 /**
@@ -18,25 +19,35 @@ import javafx.scene.paint.Color;
 public class CampoJuego extends Pane {
     private int w,h;
     
-    ArrayList<bloque>blocks = new ArrayList<bloque>();
-    Serpiente snake;
+    public ArrayList<bloque> blocks = new  ArrayList<bloque>();
+    public Serpiente snake;
 
 
     
     public CampoJuego(int ancho, int alto){
         w = ancho;
         h = alto;
-        
         setMinSize(w * main.bloque_tamaño, h * main.bloque_tamaño);
         setBackground(new Background(new BackgroundFill(Color.WHITE,null, null)));
         setBorder(new Border(new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID,null,new BorderWidths(1))));
+        addManzana();
+    }
+
+    public CampoJuego() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void addSnake(Serpiente s){
        snake = s; 
-       for(bloque b:s.blocks){
-           addBloque(b);   
-       }
+       s.blocks.forEach((b) -> {
+           addBloque(b);
+        });
+    }
+    
+    public void actualizar(){
+        for(bloque b:blocks){
+            b.actualizar();
+        }
     }
     
     public void addBloque(bloque b){
@@ -44,7 +55,14 @@ public class CampoJuego extends Pane {
         blocks.add(b);
     }
     
-        public int getW() {
+    public void addManzana(){
+        int randomX = (int)(Math.random()*w);
+        int randomY= (int)(Math.random()*h);
+        Manzana manzana = new Manzana(randomX,randomY);
+        getChildren().add(manzana);
+    }
+    
+    public int getW() {
         return w;
     }
 

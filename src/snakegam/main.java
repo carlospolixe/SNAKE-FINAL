@@ -1,5 +1,8 @@
 package snakegam;
 
+import snakegam.serpiente.bloque;
+import snakegam.campo.CampodeJuego;
+import snakegam.serpiente.Serpiente;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,8 +17,9 @@ import javafx.stage.Stage;
 public class main extends Application {
     //Variables
     public static int bloque_tamaño = 10;
-    int ancho = 30, alto =15;
+    int ancho = 50, alto =35;
     int il = 5;
+    //Variable para comparar con la hora del sistema
     long then= System.nanoTime();
     
     @Override
@@ -23,7 +27,7 @@ public class main extends Application {
         
         VBox root = new VBox(10);
         //root.setPadding(new Insets(10));
-        CampoJuego f = new CampoJuego(ancho,alto);
+        CampodeJuego f = new CampodeJuego(ancho,alto);
         f.addSnake(new Serpiente(il,f));
         
         AnimationTimer mov = new AnimationTimer(){
@@ -33,15 +37,10 @@ public class main extends Application {
                 f.actualizar();
                 then = now;
             }
-                
-                
             }
-            
         };
         mov.start();
         root.getChildren().add(f);
-      
-       
         Scene scene = new Scene(root);
         
         scene.setOnKeyPressed(e-> {
@@ -65,7 +64,7 @@ public class main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+    launch(args);
     }
     
 }

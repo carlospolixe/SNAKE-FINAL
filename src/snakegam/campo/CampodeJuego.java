@@ -20,6 +20,8 @@ import snakegam.main;
  * @author CarlosDiaz,Alejando Dianez 
  */
 public class CampodeJuego extends Pane {
+    int randomX ;
+    int randomY ;
     public int w,h;
     GridPane matriz = new GridPane();
     public ArrayList<bloque> blocks = new  ArrayList<bloque>();
@@ -104,8 +106,8 @@ public class CampodeJuego extends Pane {
     }
     
     public void addManzana(){
-        int randomX = (int)(Math.random()*w);
-        int randomY= (int)(Math.random()*h);
+        randomX = (int)(Math.random()*w);
+        randomY= (int)(Math.random()*h);
         Manzana manzana = new Manzana(randomX,randomY);
         getChildren().add(manzana);
     }

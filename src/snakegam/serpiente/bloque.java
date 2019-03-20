@@ -14,8 +14,8 @@ public class bloque extends Rectangle {
     //Variables para el movimiento
     public static final int UP= 0,RIGHT=1,DOWN=2, LEFT=3;
     //Posiciones x e y
-    int posX;
-    int posY;
+    int posX=25;
+    int posY=16;
     //Posiciones x e y anteriores
     int antposX;
     int antposY;

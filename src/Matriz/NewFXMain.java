@@ -13,16 +13,15 @@ public class NewFXMain {
     public static void main(String[] args) {
         Matriz mostrar = new Matriz();
         for(int y=0; y<10;y++){
-        mostrar.ponerSerpiente();
-        mostrar.ponerManzana();
-        mostrar.mostrarTablero();
-        mostrar.moveArriba();
-        mostrar.moveAbajo();
-        mostrar.moveIzquierda();
-        mostrar.moveDerecha();
-        
-        System.out.println("---------------");
-        mostrar.quitarManzana();
+            mostrar.ponerSerpiente();
+            mostrar.ponerManzana();
+            mostrar.mostrarTablero();
+            mostrar.moveArriba();
+            mostrar.moveAbajo();
+            mostrar.moveIzquierda();
+            mostrar.moveDerecha();
+            System.out.println("---------------------------------------------------");
+            mostrar.quitarManzana();
         }
     }
 }

@@ -45,6 +45,7 @@ public class main extends Application {
                 if(now - matriz.then>1000000000 / 8){
                 f.actualizar();
                 matriz.then = now;
+                f.finjuego();
             }
             }
         };

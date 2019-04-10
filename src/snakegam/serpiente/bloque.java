@@ -33,7 +33,7 @@ public class bloque extends Rectangle {
        setTranslateY(matriz.posY * main.bloque_tamaño);
        
        previo = p;
-       //Devuelve la altura y anchura
+       //iguala la altura y anchura maxima de la matriz  a  la del campo de juego
        matriz.maxX= f.getW();
        matriz.maxY= f.getH();
        }

@@ -1,5 +1,5 @@
 package snakegam;
-
+import Matriz.Matriz;
 import snakegam.serpiente.bloque;
 import snakegam.campo.CampodeJuego;
 import snakegam.serpiente.Serpiente;
@@ -15,27 +15,36 @@ import javafx.stage.Stage;
  * @author CarlosDiaz,Alejando Dianez 
  */
 public class main extends Application {
-    //Variables
+    /*
+    crea un objeto de la clase matriz en la que podremos llamar a los diferentes 
+    elementos de la matriz como pueden ser variables metodos y demas datos 
+    necesarios
+    */
+    Matriz matriz = new Matriz();
+    //Variables de tipo entero
     public static int bloque_tamaño = 10;
-    int ancho = 50, alto =35;
     int il = 5;
-    //Variable para comparar con la hora del sistema
-    long then= System.nanoTime();
+    
+    
     
     @Override
     public void start(Stage primaryStage) {
         
         VBox root = new VBox(10);
-        //root.setPadding(new Insets(10));
-        CampodeJuego f = new CampodeJuego(ancho,alto);
+        CampodeJuego f = new CampodeJuego(matriz.maxX,matriz.maxY);
         f.addSnake(new Serpiente(il,f));
-        
+        /*
+        animation timer que hace el movimiento de la serpiente conforme  a los
+        datos dados por una variable de tipo tiempo llamada then que toma  la
+        hora en segundos del sistema actualizando asi de forma visual los datos 
+        los cuales incrementan en la matriz
+        */
         AnimationTimer mov = new AnimationTimer(){
             @Override
             public void handle(long now) {
-                if(now - then>1000000000 / 8){
+                if(now - matriz.then>1000000000 / 8){
                 f.actualizar();
-                then = now;
+                matriz.then = now;
             }
             }
         };
@@ -43,21 +52,33 @@ public class main extends Application {
         root.getChildren().add(f);
         Scene scene = new Scene(root);
         
+        //control de pulsciones de movimiento de la serpiente
         scene.setOnKeyPressed(e-> {
+        /*
+        iguala el dato de la cabeza de la serpiente al moviento  que estemos 
+        haciendo y que anuna la opcion del movimiento contrario al que hagamos de 
+        forma horizontal o vertical 
+        */
+        //CASO ARRIBA
         if(e.getCode().equals(KeyCode.UP) && f.snake.getDireccion() != bloque.DOWN){
             f.snake.setDireccion(bloque.UP);
         }
+        //CASO ABAJO
         if(e.getCode().equals(KeyCode.DOWN)&& f.snake.getDireccion() != bloque.UP){
             f.snake.setDireccion(bloque.DOWN);
         }
+        //CASO DERECHA
         if(e.getCode().equals(KeyCode.RIGHT)&& f.snake.getDireccion() != bloque.LEFT){
             f.snake.setDireccion(bloque.RIGHT);
         }
+        //CASO IZQUIERDA
         if(e.getCode().equals(KeyCode.LEFT)&& f.snake.getDireccion() != bloque.RIGHT){
             f.snake.setDireccion(bloque.LEFT);
         }
         });
-        primaryStage.setTitle("SNAKEGAME");
+        
+        //nombre del juego
+        primaryStage.setTitle("SNAKE_GAME");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

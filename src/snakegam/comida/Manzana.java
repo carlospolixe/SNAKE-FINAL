@@ -1,26 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package snakegam.comida;
-
+import Matriz.Matriz;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import snakegam.main;
 
 /**
  *
- * @author Alex
+ * @author Carlos
  */
+
+/*
+ Clase publica donde dibujamos la manzana de forma visual y la añadimos a 
+ la posicion del campo de juego correspondiente al dato de la matriz
+*/
+
 public class Manzana extends Rectangle {
-    int posX, posY;
+    Matriz matriz2 = new Matriz();
     public Manzana(int x, int y){
         super(main.bloque_tamaño,main.bloque_tamaño);
-        posX= x;
-        posY=y;
-        setTranslateX(posX * main.bloque_tamaño);
-        setTranslateY(posY * main.bloque_tamaño);
+        setTranslateX(matriz2.posX * main.bloque_tamaño);
+        setTranslateY(matriz2.posY * main.bloque_tamaño);
         setFill(Color.LIGHTGREEN);
         setStroke(Color.GREEN);
         

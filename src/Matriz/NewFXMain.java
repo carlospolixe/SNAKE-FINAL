@@ -12,16 +12,24 @@ public class NewFXMain {
     
     public static void main(String[] args) {
         Matriz mostrar = new Matriz();
-        for(int y=0; y<10;y++){
-            mostrar.ponerSerpiente();
-            mostrar.ponerManzana();
+        mostrar.ponerSerpiente();
+        mostrar.ponerManzana();
+        for(int y=0; y<20;y++){
+
+//            mostrar.cuerpoSerp();
+//            mostrar.añadirCuerpo();
             mostrar.mostrarTablero();
-            mostrar.moveArriba();
+//            mostrar.moveArriba();
             mostrar.moveAbajo();
-            mostrar.moveIzquierda();
-            mostrar.moveDerecha();
+//            mostrar.moveIzquierda();
+//            mostrar.moveDerecha();
             System.out.println("---------------------------------------------------");
-            mostrar.quitarManzana();
+          
+            mostrar.comerManzana();
+            mostrar.gameOver();
+            
         }
+       
     }
 }
+
